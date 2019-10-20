@@ -3,32 +3,47 @@ package zxh.demo.anagram;
 import org.junit.Test;
 import zxh.demo.anagram.domain.AnagramResult;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import static org.junit.Assert.*;
 
 public class AnagramFinderTest {
 
     @Test
-    public void validate_one_word_input_array_then_output_same_array() {
+    public void validate_one_word_input_array_then_output_anagram_array() {
         String[] givenArray = new String[] {
-                "a", "b", "c", "d", "e", "f"
+                "kinship", "pinkish", "enlist", "Abeokuta",
+                "inlets", "listen", "silent", "coordinator",
+                "boaster", "boaters", "borates", "lacerated",
+                "fresher", "refresh", "sinks", "tourings",
+                "skins", "knits", "stink", "urali",
+                "rots", "sort", "professoriat", "sheriffship"
+        };
+
+        String[] expectArray = new String[] {
+                "kinship pinkish",
+                "enlist inlets listen silent",
+                "boaster boaters borates",
+                "fresher refresh",
+                "sinks skins",
+                "knits stink",
+                "rots sort"
         };
 
         AnagramFinder anagramFinder = new AnagramFinder();
         AnagramResult anagramResult = anagramFinder.find(givenArray);
 
-        assertEquals(givenArray[0], anagramResult.getAnagramArray()[0]);
-        assertEquals(givenArray[1], anagramResult.getAnagramArray()[1]);
-        assertEquals(givenArray[2], anagramResult.getAnagramArray()[2]);
-        assertEquals(givenArray[3], anagramResult.getAnagramArray()[3]);
-        assertEquals(givenArray[4], anagramResult.getAnagramArray()[4]);
-
-        assertEquals(6, anagramResult.getSetCount());
-        assertEquals(1, anagramResult.getLongestSetLength());
+        assertEquals(new HashSet<>(Arrays.asList(expectArray)), new HashSet<>(Arrays.asList(anagramResult.getAnagramArray())));
+        assertEquals(7, anagramResult.getSetCount());
+        assertEquals(4, anagramResult.getLongestSetLength());
     }
 
     @Test
-    public void validate_empty_input_array_then_output_same_array() {
-        String[] givenArray = new String[] {};
+    public void validate_no_anagram_input_array_then_output_empty_array() {
+        String[] givenArray = new String[] {
+                "a", "b", "c", "d", "e"
+        };
 
         AnagramFinder anagramFinder = new AnagramFinder();
         AnagramResult anagramResult = anagramFinder.find(givenArray);
