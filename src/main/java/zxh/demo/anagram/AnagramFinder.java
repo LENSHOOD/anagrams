@@ -52,7 +52,7 @@ public class AnagramFinder {
                 .toArray(String[]::new);
     }
 
-    public boolean compareCharacters(String s1, String s2) {
+    private boolean compareCharacters(String s1, String s2) {
         if (Objects.isNull(s1) || Objects.isNull(s2)) {
             return false;
         }
