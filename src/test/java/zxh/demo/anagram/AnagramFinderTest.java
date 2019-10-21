@@ -10,31 +10,30 @@ import static org.junit.Assert.*;
 
 public class AnagramFinderTest {
 
+    private static String[] givenArraySmall = new String[] {
+            "kinship", "pinkish", "enlist", "Abeokuta",
+            "inlets", "listen", "silent", "coordinator",
+            "boaster", "boaters", "borates", "lacerated",
+            "fresher", "refresh", "sinks", "tourings",
+            "skins", "knits", "stink", "urali",
+            "rots", "sort", "professoriat", "sheriffship"
+    };
+    private static String[] expectArraySmall = new String[] {
+            "kinship pinkish",
+            "enlist inlets listen silent",
+            "boaster boaters borates",
+            "fresher refresh",
+            "sinks skins",
+            "knits stink",
+            "rots sort"
+    };
+    
     @Test
     public void validate_one_word_input_array_then_output_anagram_array() {
-        String[] givenArray = new String[] {
-                "kinship", "pinkish", "enlist", "Abeokuta",
-                "inlets", "listen", "silent", "coordinator",
-                "boaster", "boaters", "borates", "lacerated",
-                "fresher", "refresh", "sinks", "tourings",
-                "skins", "knits", "stink", "urali",
-                "rots", "sort", "professoriat", "sheriffship"
-        };
-
-        String[] expectArray = new String[] {
-                "kinship pinkish",
-                "enlist inlets listen silent",
-                "boaster boaters borates",
-                "fresher refresh",
-                "sinks skins",
-                "knits stink",
-                "rots sort"
-        };
-
         AnagramFinder anagramFinder = new AnagramFinder();
-        AnagramResult anagramResult = anagramFinder.find(givenArray);
+        AnagramResult anagramResult = anagramFinder.find(givenArraySmall);
 
-        assertEquals(new HashSet<>(Arrays.asList(expectArray)), new HashSet<>(Arrays.asList(anagramResult.getAnagramArray())));
+        assertEquals(new HashSet<>(Arrays.asList(expectArraySmall)), new HashSet<>(Arrays.asList(anagramResult.getAnagramArray())));
         assertEquals(7, anagramResult.getSetCount());
         assertEquals(4, anagramResult.getLongestSetLength());
     }
