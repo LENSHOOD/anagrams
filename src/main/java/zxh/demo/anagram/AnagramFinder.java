@@ -1,6 +1,7 @@
 package zxh.demo.anagram;
 
 import zxh.demo.anagram.domain.AnagramResult;
+import zxh.demo.anagram.internal.TextFileProcessHelper;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -11,6 +12,16 @@ import java.util.stream.Stream;
  * @date 2019-10-16
  */
 public class AnagramFinder {
+    public void find(String inputFilePath, String outputFilePath) {
+        AnagramResult result = find(TextFileProcessHelper.readFromTextFile(inputFilePath));
+        TextFileProcessHelper.writeToFile(
+                result.getAnagramArray(),
+                outputFilePath);
+
+        System.out.println("Result set count: " + result.getSetCount());
+        System.out.println("Longest set length: " + result.getLongestSetLength());
+    }
+
     public AnagramResult find(String[] inputArray) {
 
         String[] anagramArray = findAnagram(inputArray);
