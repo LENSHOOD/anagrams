@@ -11,6 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
@@ -120,6 +121,17 @@ public class AnagramFinderTest {
         }
 
         Files.delete(Paths.get(outputFilePath));
+    }
+
+    @Test
+    public void validate_find_anagram_from_real_word_list() throws IOException {
+        String inputFilePath = "src/test/resources" + File.separator + "wordlist.txt";
+        String outputFilePath = "src/test/resources" + File.separator + "outputWordlist";
+
+        AnagramFinder anagramFinder = new AnagramFinder();
+        System.out.println("Start at: " + LocalDateTime.now());
+        anagramFinder.find(inputFilePath, outputFilePath);
+        System.out.println("End at: " + LocalDateTime.now());
     }
 
 }
