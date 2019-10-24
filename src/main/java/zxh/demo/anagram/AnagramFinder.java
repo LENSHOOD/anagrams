@@ -1,7 +1,7 @@
 package zxh.demo.anagram;
 
 import zxh.demo.anagram.domain.AnagramResult;
-import zxh.demo.anagram.internal.TextFileProcessHelper;
+import zxh.demo.anagram.internal.util.TextFileProcessHelper;
 
 import java.util.*;
 import java.util.stream.Stream;

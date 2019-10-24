@@ -1,4 +1,4 @@
-package zxh.demo.anagram.internal;
+package zxh.demo.anagram.internal.util;
 
 import zxh.demo.anagram.AnagramFinderException;
 

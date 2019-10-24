@@ -3,6 +3,7 @@ package zxh.demo.anagram.internal;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import zxh.demo.anagram.internal.util.TextFileProcessHelper;
 
 import java.io.BufferedWriter;
 import java.io.File;
