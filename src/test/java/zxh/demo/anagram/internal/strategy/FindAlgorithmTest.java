@@ -2,6 +2,7 @@ package zxh.demo.anagram.internal.strategy;
 
 import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -25,6 +26,20 @@ public class FindAlgorithmTest {
             "knits stink",
             "rots sort"
     };
+
+    @Test
+    public void validate_compareCharacters() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        FindAlgorithm anonymous = dummy -> dummy;
+
+        assertTrue(anonymous.compareCharacters("kinship", "pinkish"));
+        assertTrue(anonymous.compareCharacters("boaster", "boaters"));
+        assertTrue(anonymous.compareCharacters("ABC", "CAB"));
+
+        assertFalse(anonymous.compareCharacters("kinship", "refresh"));
+        assertFalse(anonymous.compareCharacters("ABC", "AB"));
+        assertFalse(anonymous.compareCharacters("123", ""));
+        assertFalse(anonymous.compareCharacters(null, null));
+    }
 
     @Test
     public void validate_one_word_input_array_then_output_anagram_array() {

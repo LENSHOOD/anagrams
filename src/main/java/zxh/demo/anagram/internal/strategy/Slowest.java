@@ -1,9 +1,7 @@
 package zxh.demo.anagram.internal.strategy;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Slowest:
@@ -36,22 +34,5 @@ public class Slowest implements FindAlgorithm {
 
                 .map(s -> s.stream().sorted().reduce((pre, current) -> pre + " " + current).orElse(""))
                 .toArray(String[]::new);
-    }
-
-    private boolean compareCharacters(String s1, String s2) {
-        if (Objects.isNull(s1) || Objects.isNull(s2)) {
-            return false;
-        }
-
-        char[] s1c = s1.toCharArray();
-        char[] s2c = s2.toCharArray();
-
-        if (s1c.length != s2c.length) {
-            return false;
-        }
-
-        Arrays.sort(s1c);
-        Arrays.sort(s2c);
-        return new String(s1c).equalsIgnoreCase(new String(s2c));
     }
 }
