@@ -7,8 +7,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -16,7 +14,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class AnagramFinderTest {
 
@@ -60,22 +59,6 @@ public class AnagramFinderTest {
         assertEquals(0, anagramResult.getAnagramArray().length);
         assertEquals(0, anagramResult.getSetCount());
         assertEquals(0, anagramResult.getLongestSetLength());
-    }
-
-    @Test
-    public void validate_compareCharacters() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Method compareCharacters = AnagramFinder.class.getDeclaredMethod("compareCharacters", String.class, String.class);
-        compareCharacters.setAccessible(true);
-        AnagramFinder anagramFinder = new AnagramFinder();
-
-        assertTrue((boolean) compareCharacters.invoke(anagramFinder, "kinship", "pinkish"));
-        assertTrue((boolean) compareCharacters.invoke(anagramFinder, "boaster", "boaters"));
-        assertTrue((boolean) compareCharacters.invoke(anagramFinder, "ABC", "CAB"));
-
-        assertFalse((boolean) compareCharacters.invoke(anagramFinder, "kinship", "refresh"));
-        assertFalse((boolean) compareCharacters.invoke(anagramFinder, "ABC", "AB"));
-        assertFalse((boolean) compareCharacters.invoke(anagramFinder, "123", ""));
-        assertFalse((boolean) compareCharacters.invoke(anagramFinder, null, null));
     }
 
     @Test
