@@ -29,13 +29,7 @@ public class AnagramFinder {
         System.out.println("Longest set length: " + result.getLongestSetLength());
     }
 
-    /**
-     * find anagram from input string array, and give anagrams to output string array,
-     * also return the result set count and the longest anagrams
-     * @param inputArray input string array
-     * @return AnagramResult
-     */
-    public AnagramResult find(String[] inputArray) {
+    private AnagramResult find(String[] inputArray) {
 
         String[] anagramArray = FindAlgorithmFactory
                 .create(FindAlgorithmFactory.Algorithm.SLOWEST)
