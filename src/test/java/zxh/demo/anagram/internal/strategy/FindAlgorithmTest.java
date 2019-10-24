@@ -42,7 +42,7 @@ public class FindAlgorithmTest {
     }
 
     @Test
-    public void validate_one_word_input_array_then_output_anagram_array() {
+    public void validate_find_anagram_by_slowest() {
         FindAlgorithm findAlgorithm = FindAlgorithmFactory.create(FindAlgorithmFactory.Algorithm.SLOWEST);
         String[] anagramResult = findAlgorithm.findAnagram(givenArraySmall);
 
@@ -50,12 +50,32 @@ public class FindAlgorithmTest {
     }
 
     @Test
-    public void validate_no_anagram_input_array_then_output_empty_array() {
+    public void validate_find_anagram_by_hash_map() {
+        FindAlgorithm findAlgorithm = FindAlgorithmFactory.create(FindAlgorithmFactory.Algorithm.Hash_MAP_STORE);
+        String[] anagramResult = findAlgorithm.findAnagram(givenArraySmall);
+
+        assertEquals(new HashSet<>(Arrays.asList(expectArraySmall)), new HashSet<>(Arrays.asList(anagramResult)));
+    }
+
+    @Test
+    public void validate_no_anagram_array_by_slowest() {
         String[] givenArray = new String[] {
                 "a", "b", "c", "d", "e"
         };
 
         FindAlgorithm findAlgorithm = FindAlgorithmFactory.create(FindAlgorithmFactory.Algorithm.SLOWEST);
+        String[] anagramResult = findAlgorithm.findAnagram(givenArray);
+
+        assertEquals(0, anagramResult.length);
+    }
+
+    @Test
+    public void validate_no_anagram_array_by_hash_map() {
+        String[] givenArray = new String[] {
+                "a", "b", "c", "d", "e"
+        };
+
+        FindAlgorithm findAlgorithm = FindAlgorithmFactory.create(FindAlgorithmFactory.Algorithm.Hash_MAP_STORE);
         String[] anagramResult = findAlgorithm.findAnagram(givenArray);
 
         assertEquals(0, anagramResult.length);

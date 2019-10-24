@@ -10,13 +10,16 @@ import zxh.demo.anagram.AnagramFinderException;
 public class FindAlgorithmFactory {
 
     public enum Algorithm {
-        SLOWEST;
+        SLOWEST,
+        Hash_MAP_STORE;
     }
 
     public static FindAlgorithm create(Algorithm algorithm) {
         switch (algorithm) {
             case SLOWEST:
                 return new Slowest();
+            case Hash_MAP_STORE:
+                return new HashMapStore();
             default:
                 throw new AnagramFinderException("No suitable find algorithm find.");
         }
