@@ -19,8 +19,8 @@ public class AnagramFinder {
      * @param outputFilePath output file path
      * @throws NullPointerException if input file path is null
      */
-    public AnagramResult find(String inputFilePath, String outputFilePath) {
-        AnagramResult result = find(TextFileProcessHelper.readFromTextFile(inputFilePath));
+    public AnagramResult find(String inputFilePath, String outputFilePath, FindAlgorithmFactory.Algorithm algorithm) {
+        AnagramResult result = find(TextFileProcessHelper.readFromTextFile(inputFilePath), algorithm);
         TextFileProcessHelper.writeToFile(
                 result.getAnagramArray(),
                 outputFilePath);
@@ -31,10 +31,10 @@ public class AnagramFinder {
         return result;
     }
 
-    private AnagramResult find(String[] inputArray) {
+    private AnagramResult find(String[] inputArray, FindAlgorithmFactory.Algorithm algorithm) {
 
         String[] anagramArray = FindAlgorithmFactory
-                .create(FindAlgorithmFactory.Algorithm.Hash_MAP_STORE)
+                .create(algorithm)
                 .findAnagram(inputArray);
 
         int longestSetLength = Stream.of(anagramArray)
