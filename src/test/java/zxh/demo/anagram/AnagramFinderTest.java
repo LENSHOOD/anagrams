@@ -1,7 +1,7 @@
 package zxh.demo.anagram;
 
-import org.junit.Ignore;
 import org.junit.Test;
+import zxh.demo.anagram.domain.AnagramResult;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
@@ -63,15 +63,23 @@ public class AnagramFinderTest {
     }
 
     @Test
-    @Ignore
     public void validate_find_anagram_from_real_word_list() throws IOException {
         String inputFilePath = "src/test/resources" + File.separator + "wordlist.txt";
         String outputFilePath = "src/test/resources" + File.separator + "outputWordlist";
 
         AnagramFinder anagramFinder = new AnagramFinder();
-        System.out.println("Start at: " + LocalDateTime.now());
-        anagramFinder.find(inputFilePath, outputFilePath);
-        System.out.println("End at: " + LocalDateTime.now());
+        Instant start = Instant.now();
+        AnagramResult result = anagramFinder.find(inputFilePath, outputFilePath);
+        Instant end = Instant.now();
+
+        System.out.println("Start at: " + start.toString());
+        System.out.println("End at: " + end);
+        System.out.println("Duration: " + (end.toEpochMilli() - start.toEpochMilli()) + " milliseconds");
+
+        assertEquals(20683, result.getSetCount());
+        assertEquals(13, result.getLongestSetLength());
+
+        Files.delete(Paths.get(outputFilePath));
     }
 
 }
