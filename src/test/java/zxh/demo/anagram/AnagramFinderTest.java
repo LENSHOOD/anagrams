@@ -2,6 +2,7 @@ package zxh.demo.anagram;
 
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
@@ -48,5 +49,11 @@ public class AnagramFinderTest {
 
         Set<String> resultSet = AnagramFinder.find(given);
         assertEquals(expect, resultSet);
+    }
+
+    @Test
+    public void should_read_from_file() throws IOException {
+        AnagramFinder.doAnagrams(
+                "/Users/ZhangXuhai/Personal/code/java-learning/anagram/src/test/resources/wordlist.txt");
     }
 }
